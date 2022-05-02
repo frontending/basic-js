@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../extensions/index.js')
 
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
@@ -23,11 +23,61 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+    const arr = []
+    let mem = []
+    let count = 0
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+            if (i - 1 >= 0 && j - 1 >= 0) {
+                if (matrix[i - 1][j - 1] === true) {
+                    count++
+                }
+            }
+            if (i - 1 >= 0) {
+                if (matrix[i - 1][j] === true) {
+                    count++
+                }
+            }
+            if (i - 1 >= 0 && j + 1 < matrix[0].length) {
+                if (matrix[i - 1][j + 1] === true) {
+                    count++
+                }
+            }
+            if (j - 1 >= 0) {
+                if (matrix[i][j - 1] === true) {
+                    count++
+                }
+            }
+            if (j + 1 < matrix[0].length) {
+                if (matrix[i][j + 1] === true) {
+                    count++
+                }
+            }
+            if (i + 1 < matrix.length && j - 1 >= 0) {
+                if (matrix[i + 1][j - 1] === true) {
+                    count++
+                }
+            }
+            if (i + 1 < matrix.length) {
+                if (matrix[i + 1][j] === true) {
+                    count++
+                }
+            }
+            if (i + 1 < matrix.length && j + 1 < matrix[0].length) {
+                if (matrix[i + 1][j + 1] === true) {
+                    count++
+                }
+            }
+            mem.push(count)
+            count = 0
+        }
+        arr.push(mem)
+        mem = []
+    }
+    return arr
 }
 
 module.exports = {
-  minesweeper
-};
+    minesweeper,
+}
