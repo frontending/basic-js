@@ -17,19 +17,15 @@ class DepthCalculator {
         let str
         if (count === 0) {
             str = JSON.stringify(arr)
-                .split('')
-                .filter(function (e) {
-                    return e === '[' || e === ']'
-                })
-                .join('')
         } else {
             str = arr
-                .split('')
-                .filter(function (e) {
-                    return e === '[' || e === ']'
-                })
-                .join('')
         }
+        str = str
+            .split('')
+            .filter(function (e) {
+                return e === '[' || e === ']'
+            })
+            .join('')
         for (let i = 1; i < str.length; i++) {
             if (str[i] === ']' && str[i - 1] === '[') {
                 str = str.substring(0, i - 1) + 'QQ' + str.substring(i + 1)
